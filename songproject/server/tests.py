@@ -10,7 +10,6 @@ class SongViewsTestCase(TestCase):
         self.client = APIClient()
         self.song = Song.objects.create(title="TestSong", song_id="12345")
         self.song_rating = SongRating.objects.create(song=self.song, rating=4)
-        print("Created song")
     
     def test_song_list_view(self):
         url = reverse('song_list')

@@ -19,9 +19,7 @@ class SongSerializer(serializers.ModelSerializer):
         ]
 
     def get_rating(self, obj):
-        if obj.rating:
-            return obj.rating.rating
-        return None 
+        return getattr(obj.rating, 'rating', None)
 
 class SongUserRatingSerializer(serializers.ModelSerializer):
     class Meta:

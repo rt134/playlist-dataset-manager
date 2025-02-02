@@ -5,6 +5,10 @@
   gap: 1.5rem;
 }
 
-.padded-container{
+.padded-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   padding-top: 1rem;
+  padding-right: 1rem;
 }

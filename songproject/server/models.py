@@ -1,7 +1,11 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class SongRating(models.Model):
-    rating = models.FloatField(default=0)
+    rating = models.FloatField(
+        default=0,
+        validators=[MinValueValidator(0.0), MaxValueValidator(5.0)]
+    )
 
     def __str__(self):
         return f"Rating: {self.rating}"
@@ -32,7 +36,9 @@ class Song(models.Model):
 
 class SongUserRating(models.Model):
     song = models.ForeignKey(Song, on_delete=models.CASCADE)
-    rating = models.FloatField()
+    rating = rating = models.FloatField(
+        validators=[MinValueValidator(0.0), MaxValueValidator(5.0)]
+    )
 
     def __str__(self):
         return f"Rating for {self.song.title}: {self.rating}"
