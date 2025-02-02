@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./songclient
+      dockerfile: Dockerfile
+    volumes:
+      - ./songclient:/app
+    ports:
+      - "3000:3000"
+    networks:
+      - my_network
+
+  backend:
+    build:
+      context: ./songproject
+      dockerfile: Dockerfile
+    volumes:
+      - ./songproject:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./songproject/.env
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
